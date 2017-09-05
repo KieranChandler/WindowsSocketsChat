@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketChat_Client", "SocketChat_Client\SocketChat_Client.csproj", "{B2F53013-F94C-4A9A-BCAC-117609501D6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsSocketsChat", "WindowsSocketsChat\WindowsSocketsChat.csproj", "{80708C4C-DF19-4099-8816-AF1DE3664E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketChat_ServerConsole", "SocketChat_ServerConsole\SocketChat_ServerConsole.csproj", "{C623AD4D-B312-4163-9C76-EABCCE2662DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketChat_Server", "SocketChat_Server\SocketChat_Server.csproj", "{A8F31612-E03F-418D-BCD8-AEFE6486AC32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2F53013-F94C-4A9A-BCAC-117609501D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F53013-F94C-4A9A-BCAC-117609501D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F53013-F94C-4A9A-BCAC-117609501D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F53013-F94C-4A9A-BCAC-117609501D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80708C4C-DF19-4099-8816-AF1DE3664E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80708C4C-DF19-4099-8816-AF1DE3664E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80708C4C-DF19-4099-8816-AF1DE3664E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80708C4C-DF19-4099-8816-AF1DE3664E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C623AD4D-B312-4163-9C76-EABCCE2662DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C623AD4D-B312-4163-9C76-EABCCE2662DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C623AD4D-B312-4163-9C76-EABCCE2662DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C623AD4D-B312-4163-9C76-EABCCE2662DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F31612-E03F-418D-BCD8-AEFE6486AC32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F31612-E03F-418D-BCD8-AEFE6486AC32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F31612-E03F-418D-BCD8-AEFE6486AC32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F31612-E03F-418D-BCD8-AEFE6486AC32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
