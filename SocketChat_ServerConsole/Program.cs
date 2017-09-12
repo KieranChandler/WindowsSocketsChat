@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsSocketsChat;
 
 namespace SocketChat_ServerConsole
 {
@@ -10,6 +11,13 @@ namespace SocketChat_ServerConsole
 	{
 		static void Main(string[] args)
 		{
+			ServerProcess Process = new ServerProcess();
+			Process.StartProcess();
+
+			Console.WriteLine("Press any key to exit the program...");
+			Console.ReadLine();
+
+			Process.StopProcess();
 		}
 	}
 }

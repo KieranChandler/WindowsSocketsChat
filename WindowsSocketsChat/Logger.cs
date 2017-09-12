@@ -13,31 +13,43 @@ namespace WindowsSocketsChat
 
 		public static bool Open(String FileName)
 		{
-			FileStream s;
-			return Open(FileName, out s);
+			try
+			{
+				if (FileName == "" || FileName == null)
+					return false;
+
+				Logger.FileName = FileName;
+
+				if (!File.Exists(FileName))
+					File.Create(FileName);
+
+				Stream s = File.Open(FileName, FileMode.Truncate);
+				s.Close();
+
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
 		}
 
 		public static void Log(String Message)
 		{
 			if (FileName != "")
 			{
-				FileStream s;
-
-				if (Open(FileName, out s))
+				try
 				{
+					FileStream s = File.Open(FileName, FileMode.Append);
+
 					Byte[] strBytes = Encoding.ASCII.GetBytes(Message + CRLF);
-					try
-					{
-						s.Write(strBytes, 0, strBytes.Length);
-					}
-					catch (Exception ex)
-					{
-						// TODO: Log here...
-					}
-					finally
-					{
-						s.Close();
-					}
+					s.Write(strBytes, 0, strBytes.Length);
+
+					s.Close();
+				}
+				catch (Exception ex)
+				{
+					// TODO: Log here...
 				}
 			}
 		}
@@ -45,45 +57,22 @@ namespace WindowsSocketsChat
 		{
 			if (FileName != "")
 			{
-				FileStream s;
-
-				if (Open(FileName, out s))
+				try
 				{
-					try
-					{
-						s.Write(Message, 0, Message.Length);
+					FileStream s = File.Open(FileName, FileMode.Append);
 
-						Byte[] strBytes = Encoding.ASCII.GetBytes(CRLF);
-						s.Write(strBytes, 0, strBytes.Length);
-					}
-					catch (Exception ex)
-					{
-						// TODO: Log here...
-					}
-					finally
-					{
-						s.Close();
-					}
+					s.Write(Message, 0, Message.Length);
+
+					Byte[] strBytes = Encoding.ASCII.GetBytes(CRLF);
+					s.Write(strBytes, 0, strBytes.Length);
+
+					s.Close();
+				}
+				catch (Exception ex)
+				{
+					// TODO: Log here...
 				}
 			}
-		}
-
-		private static bool Open(String FileName, out FileStream Stream)
-		{
-			try
-			{
-				if (!File.Exists(FileName))
-					File.Create(FileName);
-			}
-			catch (Exception ex)
-			{
-				Stream = null;
-				return false;
-			}
-
-			Stream = File.Open(FileName, FileMode.Truncate);
-
-			return true;
 		}
 	}
 }
