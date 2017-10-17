@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using WindowsSocketsChat;
 
 namespace SocketChat_Client
 {
@@ -26,6 +27,9 @@ namespace SocketChat_Client
 
 
 		Socket Sckt;
+
+		// Thread safety delegates
+		delegate void AddMessageDelegate(String Message);
 
 
 		public ClientWindow()
@@ -138,7 +142,9 @@ namespace SocketChat_Client
 		{
 			try
 			{
-				Byte[] Bytes = Encoding.ASCII.GetBytes(InputBox.Text);
+				String strMessage = "SNDMSG|" + InputBox.Text;
+
+				Byte[] Bytes = Encoding.ASCII.GetBytes(strMessage);
 				Sckt.Send(Bytes);
 			}
 			catch (Exception ex)
@@ -177,9 +183,35 @@ namespace SocketChat_Client
 			return true;
 		}
 
-		private void ProcessMessage(String Message)
+		private void ProcessMessage(Byte[] Message)
 		{
+			switch(Messaging.GetMessageCommand(Message))
+			{
+				case Command.SendMsg:
+					Byte[] Bytes = Messaging.GetData(Message);
+					ChatMessage Msg = ChatMessage.FromByteArray(Bytes);
 
+					String strText = Msg.UserName + " - " + Msg.MessageText;
+
+					AddMessage(strText);
+
+					break;
+			}
+		}
+
+
+		// Thread safety
+		public void AddMessage(String Message)
+		{
+			if (MsgsBox.InvokeRequired)
+			{
+				AddMessageDelegate dlgt = new AddMessageDelegate(AddMessage);
+				Invoke(dlgt, Message);
+			}
+			else
+			{
+				MsgsBox.Text += Message;
+			}
 		}
 
 
@@ -197,8 +229,7 @@ namespace SocketChat_Client
 				int NumBytes = Sckt.EndReceive(result); 
 				if (NumBytes > 0)
 				{
-					String Message = Encoding.ASCII.GetString(Buffer);
-					ProcessMessage(Message);
+					ProcessMessage(Buffer);
 				}
 			}
 			catch (Exception ex)
